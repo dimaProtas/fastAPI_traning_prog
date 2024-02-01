@@ -1,0 +1,3 @@
+# Команда "alembic init migrations" для инициализации мигрций
+# Команда создающая миграции '''alembic revision --autogenerate -m "Database Created"'''
+# Команда выполнения миграций '''alembic upgrade <версия миграции>''' используй 'head' для обновления до последней версии
