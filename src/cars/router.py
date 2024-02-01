@@ -1,3 +1,5 @@
+import time
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select, insert
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -7,6 +9,9 @@ from src.cars.models import cars
 from src.cars.shemas import CarCreate
 from src.database import get_async_session
 
+from fastapi_cache.decorator import cache
+
+
 router = APIRouter(
     prefix='/cars',
     tags=['Cars']
@@ -14,11 +19,13 @@ router = APIRouter(
 
 
 @router.get('/get_cars')
+@cache(30)
 async def get_cars(ofset: int = 0, limit: int = 2, session: AsyncSession = Depends(get_async_session)):
     try:
         query = select(cars).limit(limit).offset(ofset)
         result = await session.execute(query)
         # x = 1 / 0
+        time.sleep(2)  # Для проверки кеширования
         return result.mappings().all()
     # Отлавливаем ошибку деление на 0, и возвращаем status_code=200 (так можно любые ошибки отлавливать и возвращать любой ответ и статус)
     except ZeroDivisionError:
