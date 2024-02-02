@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from src.auth.base_conf import auth_backend, fastapi_users
 from src.auth.scemas import UserRead, UserCreate
 from src.cars.router import router
+from src.tasks.router import router as celery_router
 
 from fastapi_cache import FastAPICache
 from fastapi_cache.backends.redis import RedisBackend
@@ -26,6 +27,7 @@ app.include_router(
 )
 
 app.include_router(router)
+app.include_router(celery_router)
 
 
 # Функция для кеширования

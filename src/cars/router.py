@@ -24,8 +24,8 @@ async def get_cars(ofset: int = 0, limit: int = 2, session: AsyncSession = Depen
     try:
         query = select(cars).limit(limit).offset(ofset)
         result = await session.execute(query)
-        # x = 1 / 0
-        time.sleep(2)  # Для проверки кеширования
+        # x = 1 / 0 # Для проверки кеширования
+        # time.sleep(2)  # Для проверки кеширования
         return result.mappings().all()
     # Отлавливаем ошибку деление на 0, и возвращаем status_code=200 (так можно любые ошибки отлавливать и возвращать любой ответ и статус)
     except ZeroDivisionError:

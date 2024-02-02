@@ -1,0 +1,2 @@
+# Запуск Celery "celery -A src.tasks.tasks:celery worker --loglevel=INFO"
+# Запуск Flower "celery -A src.tasks.tasks:celery flower"
