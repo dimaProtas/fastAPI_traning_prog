@@ -19,7 +19,7 @@ router = APIRouter(
 
 
 @router.get('/get_cars')
-@cache(30)
+# @cache(30)
 async def get_cars(ofset: int = 0, limit: int = 2, session: AsyncSession = Depends(get_async_session)):
     try:
         query = select(cars).limit(limit).offset(ofset)

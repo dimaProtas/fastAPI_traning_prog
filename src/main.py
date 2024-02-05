@@ -30,6 +30,7 @@ app.include_router(router)
 app.include_router(celery_router)
 
 
+
 # Функция для кеширования
 @app.on_event("startup")
 async def startup():

@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+  postgres:
+    container_name: 'test_postgres'
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: ${PGUSER_TEST}
+      POSTGRES_DB: ${DATABASE_NAME_TEST}
+      POSTGRES_PASSWORD: ${PGPASSWORD_TEST}
+    ports:
+      - '6000:6000'
+    env_file:
+      - '.env'
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data

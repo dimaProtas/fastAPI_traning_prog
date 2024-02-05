@@ -1,12 +1,11 @@
 from datetime import datetime
 from typing import Union
 from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable
-from sqlalchemy import MetaData, Integer, TIMESTAMP, ForeignKey, Table, Column, String, JSON, Boolean
+from sqlalchemy import Integer, TIMESTAMP, ForeignKey, Table, Column, String, JSON, Boolean
 from sqlalchemy.orm import Mapped, mapped_column
 
-from src.database import Base
+from src.database import Base, metadata
 
-metadata = MetaData()
 
 role = Table(
     'role',

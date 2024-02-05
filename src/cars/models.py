@@ -1,8 +1,7 @@
-from sqlalchemy import MetaData, Integer, TIMESTAMP, ForeignKey, Table, Column, String, JSON, Boolean
-
+from sqlalchemy import Integer, TIMESTAMP, ForeignKey, Table, Column, String, JSON, Boolean
 from src.auth.models import user
+from src.database import metadata
 
-metadata = MetaData()
 
 cars = Table(
     'cars',
