@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1>Hello {{ current_user.first_name }} {{ current_user.last_name }}</h1>
+    <div class="container">
+        {% for user in users %}
+            <div class="containerUser">
+                <img src="https://sun9-53.userapi.com/impf/c837323/v837323708/3d27f/p_K20FZSCf4.jpg?size=1280x1138&quality=96&sign=6f62e11ee3a973a69c1fe206d6357a31&c_uniq_tag=SrHOkcLHrtlkVgSmOtxrRgekNa4wlE05OWs3wTeW14w&type=album" />
+                <div>
+                    <p>{% if user.is_superuser %}✅{% endif %}{{ user.first_name }} {{ user.last_name }}</p>
+                    <p>{{ user.email}}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

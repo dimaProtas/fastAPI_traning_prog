@@ -1,18 +1,23 @@
-from fastapi import FastAPI
-from src.auth.base_conf import auth_backend, fastapi_users
+from fastapi import FastAPI, Depends
+from src.auth.base_conf import auth_backend, fastapi_users, current_user
+from src.auth.models import User
 from src.auth.scemas import UserRead, UserCreate
 from src.cars.router import router
 from src.tasks.router import router as celery_router
+from src.pages.router import router as pages_router
+from src.chat.router import router as chat_router
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi_cache import FastAPICache
 from fastapi_cache.backends.redis import RedisBackend
-
+from fastapi.staticfiles import StaticFiles
 from redis import asyncio as aioredis
 
 
 app = FastAPI(
     title='Cars App'
 )
+
+app.mount("/static", StaticFiles(directory="src/static"), name="static")
 
 app.include_router(
     fastapi_users.get_auth_router(auth_backend),
@@ -26,8 +31,16 @@ app.include_router(
     tags=["auth"],
 )
 
+
+@app.get("/protected-route")
+def protected_route(user: User = Depends(current_user)):
+    return f"Hello, {user.email}"
+
+
 app.include_router(router)
 app.include_router(celery_router)
+app.include_router(pages_router)
+app.include_router(chat_router)
 
 
 origins = [

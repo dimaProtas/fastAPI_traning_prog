@@ -1,0 +1,20 @@
+<nav>
+    <div class="containerLink">
+        {% if current_user %}
+            <a href="/index/base">Главная</a>
+            <a href="/index/cars/0/10/">Cars</a>
+            <a href="/index/chat/">Chat</a>
+        {% endif %}
+    </div>
+    {% if current_user %}
+        <div class="containerLink">
+            <span style="color: red;">{{ current_user.first_name }}</span>
+            <a onclick="logout()">Logout</a>
+        </div>
+    {% else %}
+        <div class="containerLink">
+            <a href="/index/login">Login</a>
+            <a href="/index/registration">Registration</a>
+        </div>
+    {% endif %}
+</nav>

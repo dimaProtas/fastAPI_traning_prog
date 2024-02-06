@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <h1>Registraion</h1>
+    <div class="loginContainer">
+        <div class="login">
+            <input id="firsName" type="text" placeholder="First Name">
+            <input id="lastName" type="text" placeholder="Last Name">
+            <input id="email" type="text" placeholder="Email">
+            <input id="password" type="text" placeholder="Password">
+            <button onclick="login()">Registration</button>
+        </div>
+    </div>
+<script src="{{ url_for('static', path='js/registration.js') }}"></script>
+{% endblock %}

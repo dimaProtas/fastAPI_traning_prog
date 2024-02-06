@@ -15,23 +15,25 @@ role = Table(
     Column('permissions', JSON)
 )
 
-user = Table(
-    'user',
-    metadata,
-    Column('id', Integer, primary_key=True),
-    Column('first_name', String, nullable=False),
-    Column('last_name', String),
-    Column('email', String, nullable=False),
-    Column('hashed_password', String, nullable=False),
-    Column('registration_at', TIMESTAMP, default=datetime.utcnow),
-    Column('role_id', Integer, ForeignKey(role.c.id)),
-    Column('is_active', Boolean, default=True, nullable=False),
-    Column('is_superuser', Boolean, default=False, nullable=False),
-    Column('is_verified', Boolean, default=False, nullable=False),
-)
+# user = Table(
+#     'user',
+#     metadata,
+#     Column('id', Integer, primary_key=True),
+#     Column('first_name', String, nullable=False),
+#     Column('last_name', String),
+#     Column('email', String, nullable=False),
+#     Column('hashed_password', String, nullable=False),
+#     Column('registration_at', TIMESTAMP, default=datetime.utcnow),
+#     Column('role_id', Integer, ForeignKey(role.c.id)),
+#     Column('is_active', Boolean, default=True, nullable=False),
+#     Column('is_superuser', Boolean, default=False, nullable=False),
+#     Column('is_verified', Boolean, default=False, nullable=False),
+# )
 
 
 class User(SQLAlchemyBaseUserTable[int], Base):
+    __tablename__ = 'user'
+
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     first_name: Mapped[str] = mapped_column(String(length=100), nullable=False)
     last_name: Mapped[str] = mapped_column(String(length=100))

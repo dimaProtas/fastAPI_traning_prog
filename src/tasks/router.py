@@ -10,7 +10,7 @@ router = APIRouter(
 
 @router.get('/autoteka')
 def get_autoteka_report(user=Depends(current_user)):
-    # send_email_report_autoteka.delay(user.first_name)
+    send_email_report_autoteka.delay(user.first_name)
     return {
         'status': 200,
         'data': "Письмо отправлено",

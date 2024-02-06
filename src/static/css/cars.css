@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.divContainer {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid;
+  padding: 20px;
+  margin: 5px;
+  background-color: #20B2AA;
+  border-radius: 10px;
+  width: 60%;
+}
+
+img {
+    width: 20%;
+    margin-right: 15px;
+}
+
+.img_title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}

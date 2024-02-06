@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Cars{% endblock %}
+
+{% block content %}
+    <h1>Cars</h1>
+    <div class="container">
+        <div>
+            <input id="brand" type="text" placeholder="Марка">
+            <button onclick="search_brand_car()">Поиск</button>
+        </div>
+        {% if cars %}
+            {% for car in cars %}
+            <div class="divContainer">
+                <div class="img_title">
+                    <img src="https://prorisuem.ru/foto/27/avtomobil_risunok_33.webp" />
+                    <div>
+                        <p>{{ car.brand }} {{ car.model }}</p>
+                        <p>{{ car.color }}</p>
+                        <span style="background-color: {{ car.color }}; width: 20px; height: 20px; border-radius: 50%; display: inline-block;"></span>
+                    </div>
+                </div>
+                <p>{{ car.price }} руб.</p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <h3>Авто не найдены</h3>
+        {% endif %}
+    </div>
+    <script src="{{ url_for('static', path='js/script_search_brand.js') }}"></script>
+{% endblock %}
