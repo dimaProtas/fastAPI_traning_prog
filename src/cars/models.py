@@ -1,7 +1,8 @@
 from sqlalchemy import Integer, TIMESTAMP, ForeignKey, Table, Column, String, JSON, Boolean
-from src.auth.models import user
-from src.database import metadata
+from sqlalchemy.orm import Mapped, mapped_column
 
+from src.auth.models import User
+from src.database import metadata, Base
 
 cars = Table(
     'cars',
@@ -11,5 +12,5 @@ cars = Table(
     Column('model', String(length=100), nullable=False),
     Column('price', Integer),
     Column('color', String(length=50), nullable=False),
-    Column('user_id', Integer, ForeignKey(user.c.id))
+    Column('user_id', Integer, ForeignKey(User.id))
 )

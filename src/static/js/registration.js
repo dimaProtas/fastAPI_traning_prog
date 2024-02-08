@@ -1,10 +1,10 @@
-const first_name = document.querySelector('#firsName')
-const last_name = document.querySelector('#lastName')
-const email = document.querySelector('#email')
-const password = document.querySelector('#password')
+let first_name = document.querySelector('#firsName')
+let last_name = document.querySelector('#lastName')
+let email = document.querySelector('#email')
+let password = document.querySelector('#password')
 
 
-const login = () => {
+const registration = () => {
 
     fetch('http://127.0.0.1:8000/auth/register', {
         method: "POST",

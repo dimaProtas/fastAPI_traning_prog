@@ -4,14 +4,22 @@
 
 {% block content %}
     <h1>Cars</h1>
-    <div class="container">
+    <div style="display: flex; justify-content: center; margin: 5px;">
+        <input id="addBrand" type="text" placeholder="Марка">
+        <input id="addmodel" type="text" placeholder="Модель">
+        <input id="addPrice" type="text" placeholder="Цена">
+        <input id="addColor" type="text" placeholder="Цвет">
+        <input id="addUserId" type="text" placeholder="Юзер" value="{{ current_user.id }}" style="display: none">
+            <button onclick="add_car()">Добавить</button>
+    </div>
+    <div id="container" class="container">
         <div>
             <input id="brand" type="text" placeholder="Марка">
             <button onclick="search_brand_car()">Поиск</button>
         </div>
         {% if cars %}
             {% for car in cars %}
-            <div class="divContainer">
+            <div id="car_{{ car.id }}" class="divContainer">
                 <div class="img_title">
                     <img src="https://prorisuem.ru/foto/27/avtomobil_risunok_33.webp" />
                     <div>
@@ -21,6 +29,7 @@
                     </div>
                 </div>
                 <p>{{ car.price }} руб.</p>
+                    <img onclick="deleteItem({{ car.id }})" style="width: 30px; height: 30px;" src="{{ url_for('static', path='icon/delete.png') }}" />
             </div>
             {% endfor %}
         {% else %}

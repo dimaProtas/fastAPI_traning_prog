@@ -1,10 +1,9 @@
 import time
 
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy import select, insert
+from sqlalchemy import select, insert, delete
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.auth.models import user
 from src.cars.models import cars
 from src.cars.shemas import CarCreate
 from src.database import get_async_session
@@ -22,7 +21,7 @@ router = APIRouter(
 # @cache(30)
 async def get_cars(ofset: int = 0, limit: int = 2, session: AsyncSession = Depends(get_async_session)):
     try:
-        query = select(cars).limit(limit).offset(ofset)
+        query = select(cars).order_by(cars.c.id.desc()).limit(limit).offset(ofset)
         result = await session.execute(query)
         # x = 1 / 0 # Для проверки кеширования
         # time.sleep(2)  # Для проверки кеширования
@@ -58,3 +57,11 @@ async def add_car(new_car: CarCreate, session: AsyncSession = Depends(get_async_
         return {
             'status': 'error'
         }
+
+
+@router.delete('/delete/{car_id}')
+async def delete_car(car_id: int, session: AsyncSession = Depends(get_async_session)):
+    stmt = delete(cars).where(cars.c.id == car_id)
+    await session.execute(stmt)
+    await session.commit()
+    return {'succec': 'ok'}

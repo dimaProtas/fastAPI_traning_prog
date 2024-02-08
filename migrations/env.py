@@ -10,10 +10,11 @@ import sys
 
 sys.path.append(os.path.join(sys.path[0], 'src'))
 
-# from src.auth.models import *
+from src.auth.models import *
+from src.chat.models import *
 from src.config import PGUSER, PGPASSWORD, DATABASE_NAME, DB_HOST, DB_PORT
-from src.database import metadata
-# from src.cars.models import *
+from src.database import metadata, Base
+from src.cars.models import *
 
 
 # this is the Alembic Config object, which provides
@@ -36,7 +37,7 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = metadata
+target_metadata = [metadata, Base.metadata]
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:

@@ -4,7 +4,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.auth.base_conf import current_user
-from src.auth.models import User, user
+from src.auth.models import User
 from src.cars.router import get_cars, get_cars_brand
 from src.database import get_async_session
 
@@ -19,9 +19,9 @@ templates = Jinja2Templates(directory="src/templates")
 
 @router.get('/base')
 async def index(request: Request, current_user: User = Depends(current_user), session: AsyncSession = Depends(get_async_session)):
-    query = select(user).limit(10).offset(0)
+    query = select(User).limit(10).offset(0)
     result = await session.execute(query)
-    users = result.mappings().all()
+    users = result.scalars().all()
 
     return templates.TemplateResponse("index.html", {"request": request, "current_user": current_user, "users": users})
 

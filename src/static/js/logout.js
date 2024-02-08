@@ -1,7 +1,3 @@
-const email = document.querySelector('#email')
-const password = document.querySelector('#password')
-
-
 const logout = () => {
     fetch('http://127.0.0.1:8000/auth/jwt/logout', {
         method: "POST",

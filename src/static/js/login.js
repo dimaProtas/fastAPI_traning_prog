@@ -1,5 +1,5 @@
-const email = document.querySelector('#email')
-const password = document.querySelector('#password')
+let email = document.querySelector('#email')
+let password = document.querySelector('#password')
 
 
 const login = () => {
@@ -16,10 +16,20 @@ const login = () => {
         body: formData
     })
     .then(response => {
-        if (response.status !== 204) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        } else {
+        if (response.status === 400) {
+            let login = document.querySelector('#loginForm')
+            let elError = document.createElement('span')
+            elError.style.color = 'red'
+            let textError = document.createTextNode('Неверный логин или пароль!')
+            elError.appendChild(textError)
+
+            login.appendChild(elError)
+        } else if (response.status === 204) {
             window.location.href = '/index/base/'
+        } else {
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
     })
+
 }
+

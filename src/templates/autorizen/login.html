@@ -5,11 +5,12 @@
 {% block content %}
     <h1>Login</h1>
     <div class="loginContainer">
-        <div class="login">
+        <div id="loginForm" class="login">
             <input id="email" type="text" placeholder="Email">
-            <input id="password" type="text" placeholder="Password">
+            <input id="password" type="password" placeholder="Password">
             <button onclick="login()">Login</button>
         </div>
     </div>
+<script src="{{ url_for('static', path='js/validate_login.js') }}"></script>
 <script src="{{ url_for('static', path='js/login.js') }}"></script>
 {% endblock %}
