@@ -11,6 +11,9 @@ PGPASSWORD = os.environ.get("PGPASSWORD")
 DATABASE_NAME = os.environ.get("DATABASE_NAME")
 SECRET_AUTH = os.environ.get("SECRET_AUTH")
 
+REDIS_HOST = os.environ.get("REDIS_HOST")
+REDIS_PORT = os.environ.get("REDIS_PORT")
+
 GMAIL_USER = os.environ.get("GMAIL_USER")
 GMAIL_PASSWORD = os.environ.get("GMAIL_PASSWORD")
 

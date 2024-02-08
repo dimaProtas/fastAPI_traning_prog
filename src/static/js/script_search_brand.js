@@ -79,6 +79,11 @@ const add_car = () => {
 
             let divContainerOne = document.querySelector('.divContainer')
             container.insertBefore(divContainer, divContainerOne)
+
+            brand.value = ''
+            model.value = ''
+            price.value = ''
+            color.value = ''
         }
     })
     .catch(error => {
