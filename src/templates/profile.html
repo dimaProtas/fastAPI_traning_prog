@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+    <h1>{{ current_user.first_name }} {{ current_user.last_name }}</h1>
+    <div style="display: flex;">
+        <div>
+            <img src="https://sun9-53.userapi.com/impf/c837323/v837323708/3d27f/p_K20FZSCf4.jpg?size=1280x1138&quality=96&sign=6f62e11ee3a973a69c1fe206d6357a31&c_uniq_tag=SrHOkcLHrtlkVgSmOtxrRgekNa4wlE05OWs3wTeW14w&type=album" />
+            <p>Email: {{ current_user.email }}</p>
+            {% if current_user.role_id == 1 %}
+                <p>Роль пользователя: user</p>
+            {% elif current_user.role_id == 0 %}
+                <p>Роль пользователя: admin</p>
+            {% endif %}
+        </div>
+        <div id="containerSendEmail">
+            <h2>Отправить отчёт автотеки</h2>
+            <button onclick="send_email()">Отправить</button>
+        </div>
+    </div>
+    <script src="{{ url_for('static', path='js/send_email.js') }}"
+{% endblock %}

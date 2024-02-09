@@ -48,3 +48,8 @@ def registration(request: Request):
 @router.get('/chat')
 def chat(request: Request, current_user: User = Depends(current_user)):
     return templates.TemplateResponse('chat.html', {'request': request, 'current_user': current_user})
+
+
+@router.get('/profile')
+def profile(request: Request, current_user: User = Depends(current_user)):
+    return templates.TemplateResponse('profile.html', {'request': request, 'current_user': current_user})
